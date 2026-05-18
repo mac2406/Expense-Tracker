@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* --- Base Design System Tokens --- */
+:root {
+  /* Font Family Stacks */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Outfit', -apple-system, sans-serif;
+
+  /* HSL Color Palette - Light Mode Default */
+  --background: 240 10% 3.9%;      /* Premium dark grey default background */
+  --foreground: 0 0% 98%;          /* Light text for high contrast */
+  
+  --card: 240 10% 5.9%;
+  --card-foreground: 0 0% 98%;
+  --card-border: 240 6% 12%;
+
+  --popover: 240 10% 4.9%;
+  --popover-foreground: 0 0% 98%;
+
+  /* Fintech Signature Indigo/Blue Accent */
+  --primary: 243 75% 59%;          /* #6366f1 (Indigo) */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 4% 15%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 5% 65%;
+  --muted-foreground: 240 5% 50%;
+
+  /* Action/Status HSL Colors */
+  --success: 142 71% 45%;         /* Emerald green (Income) */
+  --success-foreground: 0 0% 100%;
+  
+  --destructive: 346 84% 50%;     /* Ruby rose (Expenses) */
+  --destructive-foreground: 0 0% 100%;
+  
+  --warning: 38 92% 50%;          /* Amber (Budget Alert) */
+  --warning-foreground: 0 0% 10%;
+
+  --info: 217 91% 60%;            /* Canadian Student/Info Blue */
+
+  --border: 240 6% 15%;
+  --input: 240 6% 15%;
+  --ring: 243 75% 59%;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(20, 20, 25, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+  --glass-blur: 16px;
+  
+  /* Layout Sizing */
+  --sidebar-width: 280px;
+  --header-height: 80px;
+}
+
+/* --- Light Mode Manual Class Override --- */
+.light {
+  --background: 240 20% 98%;       /* Soft off-white */
+  --foreground: 240 10% 3.9%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --card-border: 240 6% 90%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+
+  --primary: 243 75% 59%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 5% 93%;
+  --secondary-foreground: 240 10% 3.9%;
+
+  --muted: 240 4% 30%;
+  --muted-foreground: 240 4% 50%;
+
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --ring: 243 75% 59%;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+  --glass-blur: 16px;
+}
+
+/* --- Base Elements Reset --- */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: hsl(var(--foreground));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* --- Premium Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* --- UI Utilities --- */
+
+/* Glassmorphism Panel style */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  border-radius: var(--radius);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s, box-shadow 0.2s;
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+.light .glass-panel-hover:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.light .gradient-text {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #312e81 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Form controls styling */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Flex & Grid layouts helpers */
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dashboard Skeleton Loader */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  background-color: hsl(var(--secondary));
+  border-radius: 4px;
+}
+
+/* --- Layout Wrappers --- */
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* --- Micro animations --- */
+.pulse-glow {
+  box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  animation: pulse-glow-keyframes 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse-glow-keyframes {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
